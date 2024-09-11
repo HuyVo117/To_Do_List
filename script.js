@@ -13,6 +13,14 @@ function createItem(item){
     location.reload();  
 }
 
+function displayItems() {
+  let items = "";
+  for (let index = 0; index < itemsArray.length; index++) {
+    
+    
+  }
+  
+}
 function displayDay() {
   var date = new Date();
   date = date.toString().split(' ');
