@@ -1,3 +1,4 @@
+
 const itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []; 
 
 console.log(itemsArray);
@@ -27,7 +28,7 @@ function displayItems() {
   for (let index = 0; index < itemsArray.length; index++) {
     items += `
     <div class="item">
-    <div class="input-controller">
+    <div class="input-controller ">
         <textarea disabled> ${itemsArray[index]} </textarea>
         <div class="edit-controller">
             <i class="fa-solid fa-check deleteBtn"></i>
@@ -40,10 +41,73 @@ function displayItems() {
     </div>
 </div>
 `;
-    
+  
   }
   document.querySelector(".to_do_list").innerHTML = items;
+  activateDeleteListeners();
+  activateEditListeners();
+  activateSaveListeners();
+  activateCancelListeners();
+
   
+}
+
+
+function activateDeleteListeners(){
+  let deleteBtn = document.querySelectorAll('.deleteBtn');
+  deleteBtn.forEach((button, index) => {
+    button.addEventListener('click', () => {
+      deleteItem(index);
+    });
+  });
+}
+function activateEditListeners(){
+  let editBtn = document.querySelectorAll('.editBtn');
+  const updateController = document.querySelectorAll('.update-controller');
+  const inputs = document.querySelectorAll('.input-controller textarea');
+  editBtn.forEach((button, index)=>{
+    button.addEventListener('click', () => {
+      updateController[index].style.display = 'block';
+     inputs[index].disabled = false;
+      
+    });
+  })
+}
+
+function activateSaveListeners(){
+let saveBtn = document.querySelectorAll('.saveBtn');
+const inputs = document.querySelectorAll('.input-controller textarea');
+saveBtn.forEach((button,index)=>{
+  button.addEventListener('click',()=>{
+    updateItem(index, inputs[index].value);
+  })
+})
+}
+
+function activateCancelListeners(){
+  let cancelBtn = document.querySelectorAll('.cancelBtn');
+  const inputs = document.querySelectorAll('.input-controller textarea');
+  const updateController = document.querySelectorAll('.update-controller');
+  cancelBtn.forEach((button, index)=>{
+    button.addEventListener('click', () => {
+      updateController[index].style.display = 'none';
+     inputs[index].disabled = true;
+      
+    });
+  })
+
+}
+function updateItem(index, value){
+  itemsArray[index] = value;
+  localStorage.setItem('items', JSON.stringify(itemsArray));
+  location.reload();
+  
+}
+
+function deleteItem(index){
+  itemsArray.splice(index, 1);
+  localStorage.setItem('items', JSON.stringify(itemsArray));
+  location.reload();
 }
 function displayDay() {
   var date = new Date();
