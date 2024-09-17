@@ -3,6 +3,7 @@ body{
     background-image: url('./image/1355608.png');
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 * {
     padding: 0;
@@ -17,7 +18,20 @@ body{
     background-color: #c9d1c8;
     border: 15px;
   }
-  
+  #add{
+    border-radius: 0px;
+  }
+
+  #add:hover{
+        background-color: #2f3e36;
+        color: white;
+    }
+    
+  #clear:hover{
+    background-color: #2f3e36;
+    color: white;
+    
+  }
   .app {
     width: 600px;
     margin: auto;
@@ -87,10 +101,16 @@ body{
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
     width: 80%;
     margin: auto;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
   }
+
+  
+  
   
   .input-controller {
     display: flex;
+    flex-direction: column;
     gap: 10px;
   }
   
@@ -106,6 +126,8 @@ body{
     font-size: 1.2rem;
     font-family: jetbrains mono, monospace;
     transition: all 0.30s ease-in-out;
+    gap: 10px;
+    
   }
   
   textarea:focus {
@@ -143,4 +165,60 @@ body{
     }
   
   }
+  .item:hover {
+    background-color: rgba(239, 200, 200, 0);
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.7);
+    
+}
+.menu-icon {
+    margin-left: 20px;
+    margin-top: 10px;
+
+}
+
+.menu-icon i {
+    font-size: 24px;
+    color: white;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background-color: rgb(253, 253, 253);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+.dropdown-menu button {
+    display: block;
+    width: 100%;
+    padding: 10px 20px; 
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 16px; 
+    color: #333; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
+.dropdown-menu button:hover {
+    background-color: #f0f0f0;
+}
+
+.dropdown-menu button:hover {
+    background-color: #f0f0f0; 
+    color: #000; 
+}
+
+.dropdown-menu button:focus {
+    outline: none; 
+    background-color: #e0e0e0; 
+}
+
 

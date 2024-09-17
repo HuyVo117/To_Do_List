@@ -1,4 +1,38 @@
 
+document.addEventListener('DOMContentLoaded', () => {
+  const menuIcon = document.querySelector('.menu-icon');
+  const dropdownMenu = document.querySelector('.dropdown-menu');
+
+  if (addButton) {
+    addButton.addEventListener('click', () => {
+      const item = document.querySelector("#item").value; 
+      createItem(item);
+    });
+  } else {
+    console.error("Add button not found");
+  }
+
+  if (clearButton) {
+    clearButton.addEventListener('click', () => {
+      clearItems();
+    });
+  } else {
+    console.error("Clear button not found");
+  }
+
+  if (menuIcon) {
+    menuIcon.addEventListener('click', () => {
+      dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+    });
+  } else {
+    console.error("Menu icon not found");
+  }
+  displayItems();
+  displayDay();
+});
+
+
+
 const itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []; 
 
 console.log(itemsArray);
@@ -12,14 +46,15 @@ clearItems();
 });
 
 function createItem(item){
+  
     itemsArray.push(item);  
     localStorage.setItem('items', JSON.stringify(itemsArray));
     location.reload();  
 }
 function clearItems() {
-  itemsArray.length =0; // clear the array
+  itemsArray.length =0; 
   localStorage.setItem('items', JSON.stringify(itemsArray)); // save the array
-  location.reload(); // reload the page
+  location.reload(); 
   
 }
 
@@ -31,7 +66,7 @@ function displayItems() {
     <div class="input-controller ">
         <textarea disabled> ${itemsArray[index]} </textarea>
         <div class="edit-controller">
-            <i class="fa-solid fa-check deleteBtn"></i>
+            <i class="fa-solid fa-x deleteBtn"></i>
             <i class="fa-regular fa-pen-to-square editBtn"></i>
         </div>
     </div>
