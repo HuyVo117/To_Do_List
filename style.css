@@ -80,7 +80,7 @@ body{
   }
   
   .to_do_list .fa-pen-to-square {
-    color: #5b7065;
+    color: #ffffff;
   }
   
   .to_do_list button {
@@ -137,7 +137,12 @@ body{
   .edit-controller {
     display: flex;
     gap: 5px;
+    
+
   }
+    
+
+ 
   
   .update-controller {
     display: none;
@@ -179,6 +184,11 @@ body{
 .menu-icon i {
     font-size: 24px;
     color: white;
+}
+.edit-controller i {
+    margin-right: 10px; 
+    box-sizing: border-box;
+    color: #ffff;
 }
 
 .dropdown-menu {
