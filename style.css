@@ -148,7 +148,7 @@ body{
     display: none;
   }
   
-  @media(max-width: 1868px) {
+  @media(max-width: 2068px) {
     .app {
       width: 95%;
       text-align: center;
