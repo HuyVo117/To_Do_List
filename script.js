@@ -46,10 +46,17 @@ clearItems();
 });
 
 function createItem(item){
-  
-    itemsArray.push(item);  
-    localStorage.setItem('items', JSON.stringify(itemsArray));
-    location.reload();  
+ 
+    if (item.trim() !== "") { // Kiểm tra xem item có rỗng không
+      const timestamp = new Date().toLocaleString(); 
+      itemsArray.push({ content: item, timestamp: timestamp });  
+      localStorage.setItem('items', JSON.stringify(itemsArray));
+      displayItems(); 
+    }
+    else{
+      alert("Nhập nội dung đã bạn eey :v");
+    }
+
 }
 function clearItems() {
   itemsArray.length =0; 
@@ -64,12 +71,13 @@ function displayItems() {
     items += `
     <div class="item">
     <div class="input-controller ">
-        <textarea disabled> ${itemsArray[index]} </textarea>
+        <textarea disabled> ${itemsArray[index].content} </textarea>
         <div class="edit-controller">
             <i class="fa-solid fa-x deleteBtn"></i>
             <i class="fa-regular fa-pen-to-square editBtn"></i>
         </div>
     </div>
+     <div class="timestamp">Created at: ${itemsArray[index].timestamp}</div>
     <div class="update-controller">
         <button class="saveBtn">Save</button>
         <button class="cancelBtn">Cancel</button>
@@ -127,13 +135,13 @@ function activateCancelListeners(){
     button.addEventListener('click', () => {
       updateController[index].style.display = 'none';
      inputs[index].disabled = true;
-      
+
     });
   })
 
 }
 function updateItem(index, value){
-  itemsArray[index] = value;
+  itemsArray[index].content = value;
   localStorage.setItem('items', JSON.stringify(itemsArray));
   location.reload();
   
