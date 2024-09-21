@@ -1,226 +1,229 @@
-
-body{
-    background-image: url('./image/1355608.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+body {
+  background-image: url('./image/1355608.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
+
 * {
-    padding: 0;
-    margin: 0;
-  }
-  
-  
-  button {
-    height: fit-content;
-    cursor: pointer;
-    color: #04202c;
-    background-color: #c9d1c8;
-    border: 15px;
-  }
-  #add{
-    border-radius: 0px;
-  }
-
-  #add:hover{
-        background-color: #2f3e36;
-        color: white;
-    }
-    
-  #clear:hover{
-    background-color: #2f3e36;
-    color: white;
-    
-  }
-  .app {
-    width: 600px;
-    margin: auto;
-    padding-top: 50px;
-    color: white;
-  }
-  
-  .input-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    padding: 0px 0px 10px 0px;
-  }
-  
-  .to_do_input input {
-    width: 250px;
-    font-family: JetBrains Mono, monospace;
-    border: none;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    padding: 10px;
-    outline: none;
-  }
-  
-  .to_do_input button {
-    color: #5b7065;
-    font-family: JetBrains Mono, monospace;
-    border: none;
-    padding: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
-  
-  .to_do_list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .to_do_list i {
-    color: #c9d1c8;
-    cursor: pointer;
-  }
-  
-  .to_do_list .fa-pen-to-square {
-    color: #ffffff;
-  }
-  
-  .to_do_list button {
-    padding: 8px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-family: jetbrains mono, monospace;
-    border: none;
-  }
-  
-  .item {
-    display: flex;
-    flex-direction: column;
-    
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    padding: 8px;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
-    width: 80%;
-    margin: auto;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 20px;
-  }
-
-  
-  
-  .input-controller {
-    display: flex;
-    flex-direction: space-between;
-    gap: 10px;
-    
-  }
-  
-  .input-controller textarea {
-    width: 100%;
-    outline: none;
-    border: none;
-    resize: none;
-    line-height: 1.4;
-    color: white;
-    border-radius: 10px;
-    background-color: transparent;
-    font-size: 1.2rem;
-    font-family: jetbrains mono, monospace;
-    transition: all 0.30s ease-in-out;
-    gap: 10px;
-    
-  }
-  
-  textarea:focus {
-    box-shadow: 0 0 5px white;
-  }
-  
-  .edit-controller {
-    display: flex;
-    gap: 5px;
-    
-
-  }
-    
-
- 
-  
-  .update-controller {
-    display: none;
-  }
-  
-  @media(max-width: 2068px) {
-    .app {
-      width: 95%;
-      text-align: center;
-    }
-  
-    .input-header {
-      flex-direction: column;
-      padding-bottom: 20px;
-      
-    }
-  
-    .to_do_input {
-      display: flex;
-      
-    }
-  
-    .to_do_input input {
-      width: 300px;
-    }
-  
-  }
-  .item:hover {
-    background-color: rgba(239, 200, 200, 0);
-    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.7);
-    
+  padding: 0;
+  margin: 0;
 }
+
+
+button {
+  height: fit-content;
+  cursor: pointer;
+  color: #04202c;
+  background-color: #c9d1c8;
+  border: 15px;
+}
+
+#add {
+  border-radius: 0px;
+}
+
+#add:hover {
+  background-color: #2f3e36;
+  color: white;
+}
+
+#clear:hover {
+  background-color: #2f3e36;
+  color: white;
+
+}
+
+.app {
+  width: 600px;
+  margin: auto;
+  padding-top: 50px;
+  color: white;
+}
+
+.input-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 0px 0px 10px 0px;
+}
+
+.to_do_input input {
+  width: 250px;
+  font-family: JetBrains Mono, monospace;
+  border: none;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding: 10px;
+  outline: none;
+}
+
+.to_do_input button {
+  color: #5b7065;
+  font-family: JetBrains Mono, monospace;
+  border: none;
+  padding: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.to_do_list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.to_do_list i {
+  color: #c9d1c8;
+  cursor: pointer;
+}
+
+.to_do_list .fa-pen-to-square {
+  color: #ffffff;
+}
+
+.to_do_list button {
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: jetbrains mono, monospace;
+  border: none;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 8px;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
+  width: 80%;
+  margin: auto;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+}
+
+
+
+.input-controller {
+  display: flex;
+  flex-direction: space-between;
+  gap: 10px;
+
+}
+
+.input-controller textarea {
+  width: 100%;
+  outline: none;
+  border: none;
+  resize: none;
+  line-height: 1.4;
+  color: white;
+  border-radius: 10px;
+  background-color: transparent;
+  font-size: 1.2rem;
+  font-family: jetbrains mono, monospace;
+  transition: all 0.30s ease-in-out;
+  gap: 10px;
+
+}
+
+textarea:focus {
+  box-shadow: 0 0 5px white;
+}
+
+.edit-controller {
+  display: flex;
+  gap: 5px;
+
+
+}
+
+.update-controller {
+  display: none;
+}
+
+@media(max-width: 2068px) {
+  .app {
+    width: 95%;
+    text-align: center;
+  }
+
+  .input-header {
+    flex-direction: column;
+    padding-bottom: 20px;
+  }
+
+  .to_do_input {
+    display: flex;
+
+  }
+
+  .to_do_input input {
+    width: 300px;
+  }
+
+}
+
+.item:hover {
+  background-color: rgba(239, 200, 200, 0);
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.7);
+
+}
+
 .menu-icon {
-    margin-left: 20px;
-    margin-top: 10px;
+  margin-left: 20px;
+  margin-top: 10px;
 
 }
 
 .menu-icon i {
-    font-size: 24px;
-    color: white;
+  font-size: 24px;
+  color: white;
 }
+
 .edit-controller i {
-    margin-right: 10px; 
-    box-sizing: border-box;
-    color: #ffff;
+  margin-right: 10px;
+  box-sizing: border-box;
+  color: #ffff;
 }
 
 .status-controller {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 10px;
 }
 
 .status-select {
   padding: 5px;
-    font-family: JetBrains Mono, monospace;
-    border-radius: 5px;
-    background-color: transparent;
-    color: white; 
-    border: 1px solid white; 
-    width: 150px;
-    outline: none;
-    transition: all 0.3s ease-in-out;
+  font-family: JetBrains Mono, monospace;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  width: 150px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
 }
+
 .status-select option {
-  background-color: #333; 
+  background-color: #333;
   color: white;
 }
 
 .status-select:hover,
 .status-select:focus {
-  box-shadow: 0 0 5px white; 
+  box-shadow: 0 0 5px white;
 }
+
 textarea {
-  background-color: rgba(0, 0, 0, 0.3); 
-  color: white; 
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
   border-radius: 10px;
   font-size: 1.2rem;
   font-family: JetBrains Mono, monospace;
@@ -232,9 +235,8 @@ textarea {
   align-items: center;
   margin-top: 10px;
 }
+
 .timestamp {
   font-size: 0.9rem;
   color: #ffffff;
 }
-
-

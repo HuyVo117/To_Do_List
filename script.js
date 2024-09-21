@@ -3,9 +3,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuIcon = document.querySelector('.menu-icon');
   const dropdownMenu = document.querySelector('.dropdown-menu');
 
+  const isMenuOpen = localStorage.getItem('menuOpen') === 'true';
+  // if (isMenuOpen) {
+  //   dropdownMenu.classList.add('active'); 
+  // }
+
+
+  // if (menuIcon && dropdownMenu) {
+  //   menuIcon.addEventListener('click', () => {
+  //     dropdownMenu.classList.toggle('active');
+
+  //     localStorage.setItem('menuOpen', dropdownMenu.classList.contains('active'));
+  //   });
+  // }
   if (addButton) {
     addButton.addEventListener('click', () => {
-      const item = document.querySelector("#item").value; 
+      const item = document.querySelector("#item").value;
       createItem(item);
     });
   } else {
@@ -33,36 +46,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-const itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []; 
+const itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
 
 console.log(itemsArray);
 
 document.querySelector("#add").addEventListener('click', () => {
-  const item = document.querySelector("#item").value; 
+  const item = document.querySelector("#item").value;
   createItem(item);
 });
 document.querySelector("#clear").addEventListener('click', () => {
-clearItems();
+  clearItems();
 });
 
-function createItem(item){
- 
-    if (item.trim() !== "") { 
-      const timestamp = new Date().toLocaleString(); 
-      itemsArray.push({ content: item, timestamp: timestamp , status: "achieved"});  
-      localStorage.setItem('items', JSON.stringify(itemsArray));
-      displayItems(); 
-    }
-    else{
-      alert("Nhập nội dung đã bạn êy :v");
-    }
+function createItem(item) {
+
+  if (item.trim() !== "") {
+    const timestamp = new Date().toLocaleString();
+    itemsArray.push({ content: item, timestamp: timestamp, status: "achieved" });
+    localStorage.setItem('items', JSON.stringify(itemsArray));
+    displayItems();
+  }
+  else {
+    alert("Nhập nội dung đã bạn êy :v");
+  }
 
 }
 function clearItems() {
-  itemsArray.length =0; 
+  itemsArray.length = 0;
   localStorage.setItem('items', JSON.stringify(itemsArray)); // save the array
-  location.reload(); 
-  
+  location.reload();
+
 }
 
 function displayItems() {
@@ -97,29 +110,29 @@ function displayItems() {
     </div>
 </div>
 `;
-  
+
   }
   document.querySelector(".to_do_list").innerHTML = items;
   activateDeleteListeners();
   activateEditListeners();
   activateSaveListeners();
   activateCancelListeners();
- activateStatusListeners();
-  
+  activateStatusListeners();
+
 }
 function activateStatusListeners() {
   const statusSelects = document.querySelectorAll('.status-select');
   statusSelects.forEach((select, index) => {
-      select.addEventListener('change', () => {
-          itemsArray[index].status = select.value;
-          localStorage.setItem('items', JSON.stringify(itemsArray));
-      });
+    select.addEventListener('change', () => {
+      itemsArray[index].status = select.value;
+      localStorage.setItem('items', JSON.stringify(itemsArray));
+    });
   });
 }
 
 
 
-function activateDeleteListeners(){
+function activateDeleteListeners() {
   let deleteBtn = document.querySelectorAll('.deleteBtn');
   deleteBtn.forEach((button, index) => {
     button.addEventListener('click', () => {
@@ -127,50 +140,50 @@ function activateDeleteListeners(){
     });
   });
 }
-function activateEditListeners(){
+function activateEditListeners() {
   let editBtn = document.querySelectorAll('.editBtn');
   const updateController = document.querySelectorAll('.update-controller');
   const inputs = document.querySelectorAll('.input-controller textarea');
-  editBtn.forEach((button, index)=>{
+  editBtn.forEach((button, index) => {
     button.addEventListener('click', () => {
       updateController[index].style.display = 'block';
-     inputs[index].disabled = false;
-      
+      inputs[index].disabled = false;
+
     });
   })
 }
 
-function activateSaveListeners(){
-let saveBtn = document.querySelectorAll('.saveBtn');
-const inputs = document.querySelectorAll('.input-controller textarea');
-saveBtn.forEach((button,index)=>{
-  button.addEventListener('click',()=>{
-    updateItem(index, inputs[index].value);
+function activateSaveListeners() {
+  let saveBtn = document.querySelectorAll('.saveBtn');
+  const inputs = document.querySelectorAll('.input-controller textarea');
+  saveBtn.forEach((button, index) => {
+    button.addEventListener('click', () => {
+      updateItem(index, inputs[index].value);
+    })
   })
-})
 }
 
-function activateCancelListeners(){
+function activateCancelListeners() {
   let cancelBtn = document.querySelectorAll('.cancelBtn');
   const inputs = document.querySelectorAll('.input-controller textarea');
   const updateController = document.querySelectorAll('.update-controller');
-  cancelBtn.forEach((button, index)=>{
+  cancelBtn.forEach((button, index) => {
     button.addEventListener('click', () => {
       updateController[index].style.display = 'none';
-     inputs[index].disabled = true;
+      inputs[index].disabled = true;
 
     });
   })
 
 }
-function updateItem(index, value){
+function updateItem(index, value) {
   itemsArray[index].content = value;
   localStorage.setItem('items', JSON.stringify(itemsArray));
   location.reload();
-  
+
 }
 
-function deleteItem(index){
+function deleteItem(index) {
   itemsArray.splice(index, 1);
   localStorage.setItem('items', JSON.stringify(itemsArray));
   location.reload();
@@ -181,7 +194,7 @@ function displayDay() {
   document.querySelector("#date").innerHTML = date[0] + " " + date[1] + " " + date[2] + " " + date[3];
 }
 
-window.onload = function() {
+window.onload = function () {
   displayItems();
   displayDay();
 }
