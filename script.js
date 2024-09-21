@@ -47,14 +47,14 @@ clearItems();
 
 function createItem(item){
  
-    if (item.trim() !== "") { // Kiểm tra xem item có rỗng không
+    if (item.trim() !== "") { 
       const timestamp = new Date().toLocaleString(); 
-      itemsArray.push({ content: item, timestamp: timestamp });  
+      itemsArray.push({ content: item, timestamp: timestamp , status: "achieved"});  
       localStorage.setItem('items', JSON.stringify(itemsArray));
       displayItems(); 
     }
     else{
-      alert("Nhập nội dung đã bạn eey :v");
+      alert("Nhập nội dung đã bạn êy :v");
     }
 
 }
@@ -77,10 +77,23 @@ function displayItems() {
             <i class="fa-regular fa-pen-to-square editBtn"></i>
         </div>
     </div>
-     <div class="timestamp">Created at: ${itemsArray[index].timestamp}</div>
+    
     <div class="update-controller">
         <button class="saveBtn">Save</button>
         <button class="cancelBtn">Cancel</button>
+    </div>
+<div class="status-time-container">
+     <div class="status-controller">
+                <label for="status-select-${index}"> </label>
+                <select id="status-select-${index}" class="status-select">
+                    <option value="achieved" ${itemsArray[index].status === 'achieved' ? 'selected' : ''}>✅ Achieved</option>
+                    <option value="in-progress" ${itemsArray[index].status === 'in-progress' ? 'selected' : ''}>🔄 In-progress</option>
+                    <option value="Issue" ${itemsArray[index].status === 'Issue' ? 'selected' : ''}>⚠️ Issue</option>
+                    <option value="completed" ${itemsArray[index].status === 'completed' ? 'selected' : ''}>🌱 Next Plant</option>
+                </select>
+            </div>
+
+    <div class="timestamp"> ${itemsArray[index].timestamp}</div>
     </div>
 </div>
 `;
@@ -91,9 +104,19 @@ function displayItems() {
   activateEditListeners();
   activateSaveListeners();
   activateCancelListeners();
-
+ activateStatusListeners();
   
 }
+function activateStatusListeners() {
+  const statusSelects = document.querySelectorAll('.status-select');
+  statusSelects.forEach((select, index) => {
+      select.addEventListener('change', () => {
+          itemsArray[index].status = select.value;
+          localStorage.setItem('items', JSON.stringify(itemsArray));
+      });
+  });
+}
+
 
 
 function activateDeleteListeners(){

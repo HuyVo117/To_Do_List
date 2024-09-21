@@ -47,6 +47,15 @@
                 <i class="fa-regular fa-pen-to-square editBtn"></i>
             </div>
         </div>
+        <div class="status-controller">
+            <label for="status-select-${index}"> </label>
+            <select id="status-select-${index}" class="status-select">
+                <option value="achieved">✅ Achieved</option>
+                <option value="in-progress">🔄 In-progress </option>
+                <option value="Issue">⚠️ Issue</option>
+                <option value="completed">🌱 Next Plant</option>
+            </select>
+        </div>
         <div class="update-controller">
             <button class="saveBtn">Save</button>
             <button class="cancelBtn">Cancel</button>
