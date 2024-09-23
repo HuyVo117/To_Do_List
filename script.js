@@ -69,7 +69,8 @@ function displayItems() {
     items += `
     <div class="item  draggable="true" data-index="${index}">
     <div class="input-controller ">
-        <textarea disabled> ${itemsArray[index].content} </textarea>
+     <input type="checkbox" class="tickBtn" ${itemsArray[index].completed ? 'checked' : ''}>
+         <textarea disabled class="${itemsArray[index].completed ? 'textarea-strikethrough' : ''}">${itemsArray[index].content}</textarea>
         <div class="edit-controller">
             <i class="fa-solid fa-x deleteBtn"></i>
             <i class="fa-regular fa-pen-to-square editBtn"></i>
@@ -104,6 +105,7 @@ function displayItems() {
   activateCancelListeners();
   activateStatusListeners();
   activateDragAndDrop();
+  activateTickListeners();
 
 }
 function activateStatusListeners() {
@@ -242,4 +244,20 @@ function updateItemsOrder() {
   itemsArray = newOrder;
   localStorage.setItem('items', JSON.stringify(itemsArray));
 
+}
+
+function activateTickListeners() {
+  const tickBtns = document.querySelectorAll('.tickBtn');
+  tickBtns.forEach((button, index) => {
+    button.addEventListener('click', () => {
+      itemsArray[index].completed = button.checked;
+      const textarea = button.nextElementSibling;
+      if (button.checked) {
+        textarea.classList.add('textarea-strikethrough');
+      } else {
+        textarea.classList.remove('textarea-strikethrough');
+      }
+      localStorage.setItem('items', JSON.stringify(itemsArray));
+    });
+  });
 }
