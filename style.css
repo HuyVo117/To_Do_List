@@ -96,7 +96,7 @@ button {
 .item {
   display: flex;
   flex-direction: column;
-
+  cursor: move;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   padding: 8px;
@@ -239,4 +239,8 @@ textarea {
 .timestamp {
   font-size: 0.9rem;
   color: #ffffff;
+}
+
+.item .dragging {
+  opacity: 0.5;
 }

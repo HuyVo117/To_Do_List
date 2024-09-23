@@ -1,21 +1,8 @@
-
+let draggedItem = null;
 document.addEventListener('DOMContentLoaded', () => {
   const menuIcon = document.querySelector('.menu-icon');
   const dropdownMenu = document.querySelector('.dropdown-menu');
 
-  const isMenuOpen = localStorage.getItem('menuOpen') === 'true';
-  // if (isMenuOpen) {
-  //   dropdownMenu.classList.add('active'); 
-  // }
-
-
-  // if (menuIcon && dropdownMenu) {
-  //   menuIcon.addEventListener('click', () => {
-  //     dropdownMenu.classList.toggle('active');
-
-  //     localStorage.setItem('menuOpen', dropdownMenu.classList.contains('active'));
-  //   });
-  // }
   if (addButton) {
     addButton.addEventListener('click', () => {
       const item = document.querySelector("#item").value;
@@ -42,10 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   displayItems();
   displayDay();
+  activateDragAndDrop();
 });
-
-
-
 const itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
 
 console.log(itemsArray);
@@ -82,7 +67,7 @@ function displayItems() {
   let items = '';
   for (let index = 0; index < itemsArray.length; index++) {
     items += `
-    <div class="item">
+    <div class="item  draggable="true" data-index="${index}">
     <div class="input-controller ">
         <textarea disabled> ${itemsArray[index].content} </textarea>
         <div class="edit-controller">
@@ -95,7 +80,7 @@ function displayItems() {
         <button class="saveBtn">Save</button>
         <button class="cancelBtn">Cancel</button>
     </div>
-<div class="status-time-container">
+<div class="status-time-container"  draggable ="true">
      <div class="status-controller">
                 <label for="status-select-${index}"> </label>
                 <select id="status-select-${index}" class="status-select">
@@ -118,6 +103,7 @@ function displayItems() {
   activateSaveListeners();
   activateCancelListeners();
   activateStatusListeners();
+  activateDragAndDrop();
 
 }
 function activateStatusListeners() {
@@ -197,4 +183,63 @@ function displayDay() {
 window.onload = function () {
   displayItems();
   displayDay();
+}
+function activateDragAndDrop() {
+  const draggables = document.querySelectorAll('.item');
+  const container = document.querySelector('.to_do_list');
+
+  draggables.forEach(draggable => {
+    addDragAndDropEvents(draggable);
+  });
+
+  container.addEventListener('dragover', function (e) {
+    e.preventDefault();
+    const afterElement = getDragAfterElement(container, e.clientY);
+    const draggingElement = document.querySelector('.dragging');
+    if (afterElement == null) {
+      container.appendChild(draggingElement);
+    } else {
+      container.insertBefore(draggingElement, afterElement);
+    }
+  });
+}
+
+function addDragAndDropEvents(item) {
+  item.addEventListener('dragstart', () => {
+    draggedItem = item;
+    setTimeout(() => item.classList.add('dragging'), 0);
+  });
+
+  item.addEventListener('dragend', () => {
+    setTimeout(() => {
+      draggedItem = null;
+      item.classList.remove('dragging');
+      updateItemsOrder();
+    }, 0);
+  });
+}
+
+function getDragAfterElement(container, y) {
+  const draggableElements = [...container.querySelectorAll('.item:not(.dragging)')];
+
+  return draggableElements.reduce((closest, child) => {
+    const box = child.getBoundingClientRect();
+    const offset = y - box.top - box.height / 2;
+    if (offset < 0 && offset > closest.offset) {
+      return { offset: offset, element: child };
+    } else {
+      return closest;
+    }
+  }, { offset: Number.NEGATIVE_INFINITY }).element;
+}
+
+function updateItemsOrder() {
+  const items = document.querySelectorAll('.item');
+  const newOrder = Array.from(items).map(item => {
+    return itemsArray[item.getAttribute('data-index')];
+  });
+
+  itemsArray = newOrder;
+  localStorage.setItem('items', JSON.stringify(itemsArray));
+
 }
