@@ -63,10 +63,11 @@ function clearItems() {
 
 }
 
-function displayItems() {
+function displayItems(filter = 'all') {
   let items = '';
   for (let index = 0; index < itemsArray.length; index++) {
-    items += `
+    if (filter === 'all' || filter === itemsArray[index].status) {
+      items += `
     <div class="item  draggable="true" data-index="${index}">
     <div class="input-controller ">
      <input type="checkbox" class="tickBtn" ${itemsArray[index].completed ? 'checked' : ''}>
@@ -96,6 +97,7 @@ function displayItems() {
     </div>
 </div>
 `;
+    }
 
   }
   document.querySelector(".to_do_list").innerHTML = items;
@@ -108,6 +110,10 @@ function displayItems() {
   activateTickListeners();
 
 }
+document.querySelector("#status-filter").addEventListener('change', (e) => {
+  displayItems(e.target.value);
+});
+
 function activateStatusListeners() {
   const statusSelects = document.querySelectorAll('.status-select');
   statusSelects.forEach((select, index) => {

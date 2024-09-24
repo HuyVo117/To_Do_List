@@ -279,3 +279,30 @@ textarea {
   background-color: #4caf50;
 
 }
+
+.filter {
+  margin: 20px 0;
+
+
+}
+
+.filter label {
+  margin-right: 10px;
+  background-color: transparent;
+  color: white;
+  font-family: JetBrains Mono, monospace;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.filter select {
+  padding: 5px;
+  font-family: JetBrains Mono, monospace;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  width: 150px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
