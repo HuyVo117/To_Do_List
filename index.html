@@ -17,12 +17,13 @@
     <div class="menu-icon">
         <i class="fa fa-bars" id="hamburger-icon"></i>
         <div class="dropdown-menu" id="dropdown-menu">
-            <option id="change-background">Change Background</option>
-            <option id="print">Print</option>
-            <option id="email">Email</option>
-            <option id="pin-to-start">Pin to Start</option>
-            <option id="help">Help</option>
+            <div id="change-background">Change Background</div>
+            <div id="print">Print</div>
+            <div id="email">Email</div>
+            <div id="pin-to-start">Pin to Start</div>
+            <div id="help">Help</div>
         </div>
+
     </div>
 
 
@@ -35,13 +36,11 @@
             <br>
             <br>
             <div class="to_do_input">
-                <br>
                 <input type="text" id="item" placeholder="Add a new task">
                 <button id="add">Add</button>
-                <span class="separator"></span>
                 <button id="clear">Clear</button>
-
             </div>
+
             <div class="filter">
                 <label for="status-filter">Filter by status:</label>
                 <select id="status-filter">
@@ -58,7 +57,7 @@
 
 
     </main>
-    <div class="item" draggable="true">
+    <div class="item" draggable="true" id="initial-item">
         <div class="input-controller">
             <textarea disabled> </textarea>
             <div class="edit-controller">

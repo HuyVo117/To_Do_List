@@ -44,18 +44,24 @@ document.querySelector("#clear").addEventListener('click', () => {
 });
 
 function createItem(item) {
-
   if (item.trim() !== "") {
     const timestamp = new Date().toLocaleString();
     itemsArray.push({ content: item, timestamp: timestamp, status: "achieved" });
     localStorage.setItem('items', JSON.stringify(itemsArray));
     displayItems();
-  }
-  else {
-    alert("Nhập nội dung đã bạn êy :v");
-  }
+    const initialItem = document.getElementById('initial-item');
+    if (initialItem) {
+      initialItem.remove();
+    }
 
+    // Xóa nội dung của input sau khi thêm
+    document.getElementById("item").value = '';
+  } else {
+    alert("Nhập nội dung đi bạn!");
+  }
 }
+
+
 function clearItems() {
   itemsArray.length = 0;
   localStorage.setItem('items', JSON.stringify(itemsArray)); // save the array
@@ -101,6 +107,7 @@ function displayItems(filter = 'all') {
 
   }
   document.querySelector(".to_do_list").innerHTML = items;
+
   activateDeleteListeners();
   activateEditListeners();
   activateSaveListeners();
@@ -267,9 +274,5 @@ function activateTickListeners() {
 
 document.getElementById("hamburger-icon").addEventListener("click", function () {
   var dropdown = document.getElementById("dropdown-menu");
-  if (dropdown.style.display === "none" || dropdown.style.display === "") {
-    dropdown.style.display = "block";
-  } else {
-    dropdown.style.display = "none";
-  }
+  dropdown.classList.toggle("active");
 });
