@@ -3,6 +3,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-position: center;
 }
 
 * {
@@ -105,6 +106,7 @@ button {
   margin: auto;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   margin-bottom: 20px;
+
 }
 
 
@@ -332,11 +334,27 @@ textarea {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #464444;
+  font-family: jetbrains mono, monospace;
+  font-size: 15px;
   color: white;
   z-index: 999;
   padding: 10px;
   border-radius: 5px;
+  width: 170px;
+  border-radius: 15px;
+}
+
+.dropdown-menu option {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #333;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-menu option:hover {
+  background-color: #555;
 }
 
 .dropdown-menu.active {

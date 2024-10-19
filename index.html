@@ -17,11 +17,12 @@
     <div class="menu-icon">
         <i class="fa fa-bars" id="hamburger-icon"></i>
         <div class="dropdown-menu" id="dropdown-menu">
-            <div id="change-background">Change Background</div>
-            <div id="print">Print</div>
-            <div id="email">Email</div>
-            <div id="pin-to-start">Pin to Start</div>
-            <div id="help">Help</div>
+            <input type="file" id="background-selector" accept="image/*" style="display:none;">
+            <option id="change-background">Change Background</option>
+            <option id="print">Print</option>
+            <option id="email">Email</option>
+            <option id="pin-to-start">Pin to Start</option>
+            <option id="help">Help</option>
         </div>
 
     </div>
@@ -57,7 +58,7 @@
 
 
     </main>
-    <div class="item" draggable="true" id="initial-item">
+    <div class="item" draggable="true" id="initial-item" aria-disabled="true">
         <div class="input-controller">
             <textarea disabled> </textarea>
             <div class="edit-controller">

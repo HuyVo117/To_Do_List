@@ -42,6 +42,40 @@ document.querySelector("#add").addEventListener('click', () => {
 document.querySelector("#clear").addEventListener('click', () => {
   clearItems();
 });
+document.getElementById('change-background').addEventListener('click', function () {
+  document.getElementById('background-selector').click();  // Kích hoạt input file
+});
+document.getElementById('background-selector').addEventListener('change', function (event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      // Đặt ảnh đã chọn làm background
+      document.body.style.backgroundImage = `url(${e.target.result})`;
+    };
+    reader.readAsDataURL(file);
+  }
+});
+document.getElementById('print').addEventListener('click', function () {
+  const taskList = document.getElementById('task-list');
+
+  if (taskList) {
+    const printWindow = window.open('', '', 'height=500,width=800');
+    printWindow.document.write('<html><head><title>In task</title></head><body>');
+    printWindow.document.write('<h1>Danh sách task:</h1>');
+    printWindow.document.write(taskList.innerHTML);
+    printWindow.document.write('<br><p>Thời gian in: ' + new Date().toLocaleString() + '</p>');
+    printWindow.document.close();
+    printWindow.print();
+  } else {
+    alert('Không có task để in.');
+  }
+});
+document.getElementById('email').addEventListener('click', function () {
+  window.location.href = "mailto:?subject=Thông tin task&body=Đây là danh sách task của bạn";
+});
+
+
 
 function createItem(item) {
   if (item.trim() !== "") {
