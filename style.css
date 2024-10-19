@@ -337,6 +337,8 @@ textarea {
   z-index: 999;
   padding: 10px;
   border-radius: 5px;
+  width: 170px;
+  font-family: jetbrains mono, monospace;
 }
 
 .dropdown-menu.active {
