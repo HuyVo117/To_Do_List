@@ -258,15 +258,12 @@ function activateTickListeners() {
     button.addEventListener('click', () => {
       itemsArray[index].completed = button.checked;
       const textarea = button.nextElementSibling;
-      if (button.checked) {
-        textarea.classList.add('textarea-strikethrough');
-      } else {
-        textarea.classList.remove('textarea-strikethrough');
-      }
+      textarea.classList.toggle('textarea-strikethrough', button.checked);
       localStorage.setItem('items', JSON.stringify(itemsArray));
     });
   });
 }
+
 
 document.getElementById("hamburger-icon").addEventListener("click", function () {
   var dropdown = document.getElementById("dropdown-menu");
